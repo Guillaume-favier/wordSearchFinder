@@ -1,3 +1,4 @@
+console.clear()
 var readline = require("./readline.js")
 var prompt = require('prompt-sync')();
 
@@ -31,6 +32,7 @@ readline.drawTable(bigArr)
 
 let word = prompt("Word: ").toUpperCase()
 var start = new Date()
+console.clear()
 // a func who get the value of a 2 dimentional array via coord in a list
 
 const getOfCoo = (coo, a) => { 
