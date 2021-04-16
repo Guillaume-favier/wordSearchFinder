@@ -29,7 +29,7 @@ console.table(bigArr)
 // get the word of the user 
 
 let word = prompt("Word: ").toUpperCase()
-
+var start = new Date()
 // a func who get the value of a 2 dimentional array via coord in a list
 
 const getOfCoo = (coo, a) => { 
@@ -112,3 +112,4 @@ for(i=0; i < bigArr.length ; i++){
     }
 }
 if (!ok) console.log("There are no word matching with your input !")
+console.info('execution time : '+((new Date() - start)/1000)+" s")
