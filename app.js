@@ -1,0 +1,92 @@
+let bigArr = []
+var fs = require('fs')
+var readline = require("./readline.js")
+var prompt = require('prompt-sync')();
+
+// read the file
+const source = "scheme.txt"
+let f = readline.fopen(source,"r")
+if (!f){
+    console.log("LN 5")
+    process.exit(1)
+}
+
+let i = 0
+do{
+    var line=readline.fgets(f)
+    if (line!=false){
+        //console.log(line)
+        bigArr[i] = line.split("")
+    }
+    i++
+}while (!readline.eof(f))
+readline.fclose(f)
+console.table(bigArr)
+
+
+// get the word of the user 
+
+let word = prompt("Nom : ").toUpperCase()
+
+// a func who get the value of a 2 dimentional array via coord in a list
+
+const getOfCoo = (coo, a) => { 
+    let res = false
+    try {res = a[coo[0]][coo[1]]}
+    catch (error) {let blabla = error}
+    return res
+}
+
+// a function who move from case to case via an oriantation code
+
+const orient = (n, a) => {
+    switch (n) {
+        case 0:
+            return [a[0],a[1]+1]
+        case 1:
+            return [a[0]+1,a[1]+1]
+        case 2:
+            return [a[0]+1,a[1]]
+        case 3:
+            return [a[0]+1,a[1]-1]
+        case 4:
+            return [a[0],a[1]-1]
+        case 5:
+            return [a[0]-1,a[1]-1]
+        case 6:
+            return [a[0]-1,a[1]]
+        case 7:
+            return [a[0]-1,a[1]+1]
+        default:
+            return [a[0],a[1]+1]
+    }
+}
+
+const suite = (i,j,l,word) => {
+    for (let k = 0; k < word.length; k++) {
+        const element = word[k];
+        if (element != getOfCoo([i,j],bigArr)){
+            return false
+        }
+        [i,j]=orient(l,[i,j])
+    }
+    return true
+}
+
+for(i=0; i < bigArr.length ; i++){
+    let ta1 = bigArr[i]
+    for (let j = 0; j < ta1.length; j++) {
+        const element = ta1[j];
+        if (word[0] === element[0]){
+            for(let l=0; l < 8; l++){
+                let ele = orient(l, [i, j])
+                let t = getOfCoo(ele,bigArr) 
+                if (t !=false && t === word[1]) {
+                    if (suite(i,j,l,word)){
+                        console.log(i+":"+j+":"+l)
+                    }
+                }
+            }
+        }
+    }
+}
