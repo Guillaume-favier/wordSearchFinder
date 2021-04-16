@@ -103,7 +103,13 @@ for(i=0; i < bigArr.length ; i++){
                 let t = getOfCoo(ele,bigArr) 
                 if (t !=false && t === word[1]) {
                     if (suite(i,j,l,word)){
-                        console.log("line: "+i+"   column: "+j+"    dirrection: "+getArrow(l))
+                        let ni = i
+                        let nj = j
+                        for (let k = 0; k < word.length; k++) {
+                            [ni, nj] = orient(l,[ni,nj])
+                        }
+                        console.log("start:\n   line: "+i+"   column: "+j+"    dirrection: "+getArrow(l))
+                        console.log("end:\n   line: "+ni+"   column: "+nj)
                         ok = true
                     }
                 }

@@ -28,5 +28,9 @@ npm i
 │    4    │ 'B' │ 'A' │ 'L' │ 'L' │ 'C' │
 └─────────┴─────┴─────┴─────┴─────┴─────┘
 Word: ball
-line: 4   column: 0    dirrection: →
+start:
+   line: 4   column: 0    dirrection: →
+end:
+   line: 4   column: 4
+execution time : 0.001 s
 ```
