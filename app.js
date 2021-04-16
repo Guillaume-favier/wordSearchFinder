@@ -1,6 +1,7 @@
 var readline = require("./readline.js")
 var prompt = require('prompt-sync')();
 
+
 // read the file and put the grid in a 2 dimentional array 
 let bigArr = []
 const source = "scheme.txt"
@@ -23,7 +24,7 @@ do{
     i++
 }while (!readline.eof(f))
 readline.fclose(f)
-console.table(bigArr)
+readline.drawTable(bigArr)
 
 
 // get the word of the user 
@@ -40,6 +41,13 @@ const getOfCoo = (coo, a) => {
 }
 
 // a function who move from case to case via an oriantation code
+const many = (c, n) => {
+    let pre = ""
+    for(let i=0; i<n; i++){
+        pre+=c
+    }
+    return pre
+}
 
 const orient = (n, a) => {
     switch (n) {
@@ -82,6 +90,8 @@ const getArrow = (n, a) => {
     }
 }
 
+
+
 const suite = (i,j,l,word) => {
     for (let k = 0; k < word.length; k++) {
         const element = word[k];
@@ -92,6 +102,7 @@ const suite = (i,j,l,word) => {
     }
     return true
 }
+
 let ok = false
 for(i=0; i < bigArr.length ; i++){
     let ta1 = bigArr[i]
@@ -103,11 +114,14 @@ for(i=0; i < bigArr.length ; i++){
                 let t = getOfCoo(ele,bigArr) 
                 if (t !=false && t === word[1]) {
                     if (suite(i,j,l,word)){
+                        let allCoo = [[i,j]]
                         let ni = i
                         let nj = j
-                        for (let k = 0; k < word.length; k++) {
+                        for (let k = 0; k < word.length-1; k++) {
                             [ni, nj] = orient(l,[ni,nj])
+                            allCoo.push([ni,nj])
                         }
+                        readline.drawTable(bigArr, allCoo)
                         console.log("start:\n   line: "+i+"   column: "+j+"    dirrection: "+getArrow(l))
                         console.log("end:\n   line: "+ni+"   column: "+nj)
                         ok = true
@@ -118,4 +132,5 @@ for(i=0; i < bigArr.length ; i++){
     }
 }
 if (!ok) console.log("There are no word matching with your input !")
-console.info('execution time : '+((new Date() - start)/1000)+" s")
+
+// console.info('execution time : '+((new Date() - start)/1000)+" s")

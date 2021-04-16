@@ -17,20 +17,4 @@ npm i
 
 ## Exemple
 
-```
-┌─────────┬─────┬─────┬─────┬─────┬─────┐
-│ (index) │  0  │  1  │  2  │  3  │  4  │
-├─────────┼─────┼─────┼─────┼─────┼─────┤
-│    0    │ 'J' │ 'D' │ 'O' │ 'L' │ 'L' │
-│    1    │ 'B' │ 'E' │ 'A' │ 'R' │ 'K' │
-│    2    │ 'M' │ 'N' │ 'P' │ 'Q' │ 'S' │
-│    3    │ 'H' │ 'G' │ 'I' │ 'F' │ 'T' │
-│    4    │ 'B' │ 'A' │ 'L' │ 'L' │ 'C' │
-└─────────┴─────┴─────┴─────┴─────┴─────┘
-Word: ball
-start:
-   line: 4   column: 0    dirrection: →
-end:
-   line: 4   column: 4
-execution time : 0.001 s
-```
+![exemple](http://2nd12.tk:5000/exemple.PNG "exemple")
