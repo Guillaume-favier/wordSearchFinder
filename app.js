@@ -16,7 +16,11 @@ do{
     var line=readline.fgets(f)
     if (line!=false){
         //console.log(line)
-        bigArr[i] = line.split("")
+        let pre = line.split("")
+        if (pre[pre.length-1] == "\r"){
+            pre = pre.slice(0,-1)
+        }
+        bigArr[i] = pre
     }
     i++
 }while (!readline.eof(f))
@@ -26,7 +30,7 @@ console.table(bigArr)
 
 // get the word of the user 
 
-let word = prompt("Nom : ").toUpperCase()
+let word = prompt("Word: ").toUpperCase()
 
 // a func who get the value of a 2 dimentional array via coord in a list
 
@@ -57,8 +61,27 @@ const orient = (n, a) => {
             return [a[0]-1,a[1]]
         case 7:
             return [a[0]-1,a[1]+1]
-        default:
-            return [a[0],a[1]+1]
+    }
+}
+
+const getArrow = (n, a) => {
+    switch (n) {
+        case 0:
+            return "→"
+        case 1:
+            return "↘"
+        case 2:
+            return "↓"
+        case 3:
+            return "↙"
+        case 4:
+            return "←"
+        case 5:
+            return "↖"
+        case 6:
+            return "↑"
+        case 7:
+            return "↗"
     }
 }
 
@@ -83,7 +106,7 @@ for(i=0; i < bigArr.length ; i++){
                 let t = getOfCoo(ele,bigArr) 
                 if (t !=false && t === word[1]) {
                     if (suite(i,j,l,word)){
-                        console.log(i+":"+j+":"+l)
+                        console.log("line: "+i+"   column: "+j+"    dirrection: "+getArrow(l))
                     }
                 }
             }
