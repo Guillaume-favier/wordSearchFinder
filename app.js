@@ -1,13 +1,12 @@
-let bigArr = []
-var fs = require('fs')
 var readline = require("./readline.js")
 var prompt = require('prompt-sync')();
 
-// read the file
+// read the file and put the grid in a 2 dimentional array 
+let bigArr = []
 const source = "scheme.txt"
 let f = readline.fopen(source,"r")
 if (!f){
-    console.log("LN 5")
+    console.error("There are no "+source+" file")
     process.exit(1)
 }
 
@@ -15,7 +14,6 @@ let i = 0
 do{
     var line=readline.fgets(f)
     if (line!=false){
-        //console.log(line)
         let pre = line.split("")
         if (pre[pre.length-1] == "\r"){
             pre = pre.slice(0,-1)
@@ -63,7 +61,6 @@ const orient = (n, a) => {
             return [a[0]-1,a[1]+1]
     }
 }
-
 const getArrow = (n, a) => {
     switch (n) {
         case 0:
@@ -95,7 +92,7 @@ const suite = (i,j,l,word) => {
     }
     return true
 }
-
+let ok = false
 for(i=0; i < bigArr.length ; i++){
     let ta1 = bigArr[i]
     for (let j = 0; j < ta1.length; j++) {
@@ -107,9 +104,11 @@ for(i=0; i < bigArr.length ; i++){
                 if (t !=false && t === word[1]) {
                     if (suite(i,j,l,word)){
                         console.log("line: "+i+"   column: "+j+"    dirrection: "+getArrow(l))
+                        ok = true
                     }
                 }
             }
         }
     }
 }
+if (!ok) console.log("There are no word matching with your input !")
