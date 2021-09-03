@@ -4,7 +4,7 @@ wordSearchFinder is an nodejs project to find word in a wordSearch grid
 
 ## Usage
 
-Edit the `scheme.txt` file and put your crossword grid like in the exemple.
+Edit the `scheme.txt` file and put your wordSearch grid like in the exemple.
 Launch the program with `npm test` or `node app.js` and enter your word.
 It will tell you the coordinate of the first letter of you word on the grid and the dirrection for the other letter.
 
