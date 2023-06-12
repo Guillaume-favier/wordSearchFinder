@@ -42,54 +42,17 @@ const getOfCoo = (coo, a) => {
     return res
 }
 
-// a function who move from case to case via an oriantation code
-const many = (c, n) => {
-    let pre = ""
-    for(let i=0; i<n; i++){
-        pre+=c
-    }
-    return pre
+// convert the id of the direction (0 ... 7) into the position.
+const orient = (n, a) => {
+    const l = [[a[0], a[1] + 1], [a[0] + 1, a[1] + 1], [a[0] + 1, a[1]], [a[0] + 1, a[1] - 1], [a[0], a[1] - 1], [a[0] - 1, a[1] - 1], [a[0] - 1, a[1]], [a[0] - 1, a[1] + 1]]
+    return l[n]
 }
 
-const orient = (n, a) => {
-    switch (n) {
-        case 0:
-            return [a[0],a[1]+1]
-        case 1:
-            return [a[0]+1,a[1]+1]
-        case 2:
-            return [a[0]+1,a[1]]
-        case 3:
-            return [a[0]+1,a[1]-1]
-        case 4:
-            return [a[0],a[1]-1]
-        case 5:
-            return [a[0]-1,a[1]-1]
-        case 6:
-            return [a[0]-1,a[1]]
-        case 7:
-            return [a[0]-1,a[1]+1]
-    }
-}
+
+
+// get the simbol of acording to the direction number
 const getArrow = (n, a) => {
-    switch (n) {
-        case 0:
-            return "→"
-        case 1:
-            return "↘"
-        case 2:
-            return "↓"
-        case 3:
-            return "↙"
-        case 4:
-            return "←"
-        case 5:
-            return "↖"
-        case 6:
-            return "↑"
-        case 7:
-            return "↗"
-    }
+    const arrows = ["→", "↘", "↓", "↙", "←", "↖", "↑", "↗"]
 }
 
 
@@ -106,16 +69,16 @@ const suite = (i,j,l,word) => {
 }
 
 let ok = false
-for(i=0; i < bigArr.length ; i++){
+for (i = 0; i < bigArr.length; i++) { // test all possible positions 
     let ta1 = bigArr[i]
     for (let j = 0; j < ta1.length; j++) {
         const element = ta1[j];
-        if (word[0] === element[0]){
-            for(let l=0; l < 8; l++){
+        if (word[0] === element[0]){ // for each positions test if the letter is the same then the first letter of the world
+            for (let l = 0; l < 8; l++) { // then the all possible orientation for the word to continue
                 let ele = orient(l, [i, j])
                 let t = getOfCoo(ele,bigArr) 
-                if (t !=false && t === word[1]) {
-                    if (suite(i,j,l,word)){
+                if (t !=false && t === word[1]) { // test if the second letter match the word
+                    if (suite(i,j,l,word)){ // test if all the word match
                         let allCoo = [[i,j]]
                         let ni = i
                         let nj = j
